@@ -74,17 +74,28 @@
 					},
 					{
 						"internalType": "string",
-						"name": "fromCity",
+						"name": "departure",
 						"type": "string"
 					},
 					{
 						"internalType": "string",
-						"name": "toCity",
+						"name": "destination",
 						"type": "string"
 					}
 				],
 				"name": "purchasePolicy",
-				"outputs": [],
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
 				"stateMutability": "payable",
 				"type": "function"
 			},
@@ -133,6 +144,11 @@
 						"internalType": "struct FlightInsurance1.InsurancePolicy[]",
 						"name": "",
 						"type": "tuple[]"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -196,6 +212,11 @@
 						"internalType": "struct FlightInsurance1.InsurancePolicy",
 						"name": "",
 						"type": "tuple"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
 					}
 				],
 				"stateMutability": "view",
@@ -215,7 +236,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"FlightInsurance1.sol": "FlightInsurance1"
+			"FlightInsurance2.sol": "FlightInsurance1"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -237,12 +258,12 @@
 				"dweb:/ipfs/QmcYR3bd862GD1Bc7jwrU9bGxrhUu5na1oP964bDCu2id1"
 			]
 		},
-		"FlightInsurance1.sol": {
-			"keccak256": "0xa7c041ce163c1819c638d49eee5b0a8148d249754a947f26709fc575cf2de3f1",
+		"FlightInsurance2.sol": {
+			"keccak256": "0x36b9efa059d3fa478c8e2e5f325f65c1a732cbfb193f577fd06837f197603452",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c3a5e9288dd3a39b2a9e97b29247b07897998bc8554e421d2a8cb2c46711ae9e",
-				"dweb:/ipfs/QmTWFEjfTYqdyGpci5bK1gX9iuPFYuEG3FPeApgoTStiPn"
+				"bzz-raw://071ed93ad4da93c64a5f2ef239b8e2fae16bca5eb4a5d474c025e4d410393441",
+				"dweb:/ipfs/QmdLfnwi4LzhyjinXrkwJJ6717SqNkXm4dvJiHXaRiizTh"
 			]
 		}
 	},
