@@ -1,0 +1,250 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_insuranceProvider",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "INDEMNITY",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "PREMIUM",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "insuranceProvider",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "flightNo",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "date",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "fromCity",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "toCity",
+						"type": "string"
+					}
+				],
+				"name": "purchasePolicy",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "viewAllPolicies",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "passengerName",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "passengerAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "string",
+								"name": "flightNumber",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "flightDate",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "departureCity",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "destinationCity",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "policyStatus",
+								"type": "string"
+							}
+						],
+						"internalType": "struct FlightInsurance1.InsurancePolicy[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "viewAvailablePolicy",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "viewMyPolicy",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "passengerName",
+								"type": "string"
+							},
+							{
+								"internalType": "address",
+								"name": "passengerAddress",
+								"type": "address"
+							},
+							{
+								"internalType": "string",
+								"name": "flightNumber",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "flightDate",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "departureCity",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "destinationCity",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "policyStatus",
+								"type": "string"
+							}
+						],
+						"internalType": "struct FlightInsurance1.InsurancePolicy",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"FlightInsurance1.sol": "FlightInsurance1"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/security/ReentrancyGuard.sol": {
+			"keccak256": "0xa535a5df777d44e945dd24aa43a11e44b024140fc340ad0dfe42acf4002aade1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://41319e7f621f2dc3733511332c4fd032f8e32ad2aa7fd6f665c19741d9941a34",
+				"dweb:/ipfs/QmcYR3bd862GD1Bc7jwrU9bGxrhUu5na1oP964bDCu2id1"
+			]
+		},
+		"FlightInsurance1.sol": {
+			"keccak256": "0xa7c041ce163c1819c638d49eee5b0a8148d249754a947f26709fc575cf2de3f1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c3a5e9288dd3a39b2a9e97b29247b07897998bc8554e421d2a8cb2c46711ae9e",
+				"dweb:/ipfs/QmTWFEjfTYqdyGpci5bK1gX9iuPFYuEG3FPeApgoTStiPn"
+			]
+		}
+	},
+	"version": 1
+}
