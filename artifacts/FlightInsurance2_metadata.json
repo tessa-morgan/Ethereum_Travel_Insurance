@@ -154,7 +154,7 @@
 								"type": "string"
 							}
 						],
-						"internalType": "struct FlightInsurance1.InsurancePolicy[]",
+						"internalType": "struct FlightInsurance2.InsurancePolicy[]",
 						"name": "",
 						"type": "tuple[]"
 					},
@@ -235,7 +235,7 @@
 								"type": "string"
 							}
 						],
-						"internalType": "struct FlightInsurance1.InsurancePolicy",
+						"internalType": "struct FlightInsurance2.InsurancePolicy",
 						"name": "",
 						"type": "tuple"
 					},
@@ -262,7 +262,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"FlightInsurance2.sol": "FlightInsurance1"
+			"FlightInsurance2.sol": "FlightInsurance2"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -285,11 +285,11 @@
 			]
 		},
 		"FlightInsurance2.sol": {
-			"keccak256": "0x188c534d167289f88982ee60f487adec619dba02a44c7643b7034f5197af89f0",
+			"keccak256": "0x818b3d882529c8351c8d79de53666df31d93afb6c4b33fa4147d2eef56f26ba2",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3e96a8d44bf27b4301e1746cc7c9a5937dc615e4290270f76f536edb8fdc9a89",
-				"dweb:/ipfs/QmTD37mq3GX9XEfZCBxJguJiHFfamKmCM6icTc6aBLPyVn"
+				"bzz-raw://d2436004a061b5639fa27c2ffb32af1281649ce4f6a167ba607c0688b689efda",
+				"dweb:/ipfs/QmdcGfTfGDMZJXiVkXSzBCzsTriB9UQNtbjKnhqJieAKTB"
 			]
 		}
 	},

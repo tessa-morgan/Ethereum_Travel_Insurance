@@ -4,7 +4,7 @@
     const contractAddress = '0x3FDC8bfda82FCbd92B64C01A29FC22CE95058B8f'
     console.log('start exec')
     
-    const artifactsPath = `browser/contracts/artifacts/Storage.json` // Change this for different path
+    const artifactsPath = `artifacts/FlightInsurance2.json` // Change this for different path
     const metadata = JSON.parse(await remix.call('fileManager', 'getFile', artifactsPath))
     const accounts = await web3.eth.getAccounts()
     
