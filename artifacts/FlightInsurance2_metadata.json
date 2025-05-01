@@ -6,13 +6,7 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_insuranceProvider",
-						"type": "address"
-					}
-				],
+				"inputs": [],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -285,11 +279,11 @@
 			]
 		},
 		"FlightInsurance2.sol": {
-			"keccak256": "0x818b3d882529c8351c8d79de53666df31d93afb6c4b33fa4147d2eef56f26ba2",
+			"keccak256": "0x5507ef8cba1235c09b91af6e4094fb6637a4b4cfe537c16255ae2faa4f1b9308",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d2436004a061b5639fa27c2ffb32af1281649ce4f6a167ba607c0688b689efda",
-				"dweb:/ipfs/QmdcGfTfGDMZJXiVkXSzBCzsTriB9UQNtbjKnhqJieAKTB"
+				"bzz-raw://7b5fc53f2d5ca2254478fcf283ea3d4f03fad63751cc0e2ba15e60ccda0fcaca",
+				"dweb:/ipfs/QmXswVu9GcjaCuqJVuz6ySsxBBbpLzYL6jkEM1yLW1fW3Q"
 			]
 		}
 	},

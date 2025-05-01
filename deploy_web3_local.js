@@ -19,14 +19,14 @@ const insuranceProvider = '0x89b8DEF9aEDeE85A9651a22baad88EE7DfdF25C9'; // Ganac
 
         const deployed = await contract.deploy({
             data: metadata.data.bytecode.object,
-            arguments: [insuranceProvider]
+            arguments: []
         }).send({
             from: accounts[0],
             gas: 2000000,
             gasPrice: '30000000000'
         });
 
-        console.log('✅ Contract deployed at:', deployed.options.address);
+        console.log('Contract deployed at:', deployed.options.address);
     } catch (err) {
         console.error('Deployment failed:', err.message);
     }

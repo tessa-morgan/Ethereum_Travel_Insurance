@@ -30,8 +30,12 @@ contract FlightInsurance2 is ReentrancyGuard {
     address[] private insuredPassengerList;
 
     // Set the insurance provider at contract deployment
-    constructor(address _insuranceProvider) {
-        insuranceProvider = _insuranceProvider;
+    // constructor(address _insuranceProvider) {
+    //     insuranceProvider = _insuranceProvider;
+    // }
+
+    constructor() {
+        insuranceProvider = 0x89b8DEF9aEDeE85A9651a22baad88EE7DfdF25C9;
     }
 
     // Returns static policy details to passenger
