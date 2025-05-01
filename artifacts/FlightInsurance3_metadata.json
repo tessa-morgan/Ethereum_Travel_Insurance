@@ -287,20 +287,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"@openzeppelin/contracts/security/ReentrancyGuard.sol": {
-			"keccak256": "0xa535a5df777d44e945dd24aa43a11e44b024140fc340ad0dfe42acf4002aade1",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://41319e7f621f2dc3733511332c4fd032f8e32ad2aa7fd6f665c19741d9941a34",
-				"dweb:/ipfs/QmcYR3bd862GD1Bc7jwrU9bGxrhUu5na1oP964bDCu2id1"
-			]
-		},
 		"FlightInsurance3.sol": {
-			"keccak256": "0x218740a83f794fe9622315da39ec522e2977ba4adfc48ed430e959c71df21547",
+			"keccak256": "0xaadcdd5fa6f0ce9b30de5667b00192e59e04333834d97e38b884d0438c953f52",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0e1a37c0eabb7129ee46632bf9c9bcb50d0ef5fb9ebd1e4843db0b9645f54edc",
-				"dweb:/ipfs/QmZapyR8554oyT8c3Tj9WfbPyKSm1BXQ57GFbt6VkzGmDq"
+				"bzz-raw://eff64d88f440867cb558ed2dd3452d4ea0739d0870e369290194124875ebf1ab",
+				"dweb:/ipfs/QmVwXZXY4Xei9CUZhKcLdzV9WZRMcxwQVLmZMeRspiaeoy"
 			]
 		}
 	},

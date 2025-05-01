@@ -1,10 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-// Reentrancy guard for protection
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-contract FlightInsurance3 is ReentrancyGuard {
+contract FlightInsurance3 {
     
     // Struct storing insurance policy details
     struct InsurancePolicy {
@@ -47,7 +45,7 @@ contract FlightInsurance3 is ReentrancyGuard {
         string calldata date,
         string calldata departure,
         string calldata destination
-    ) external payable nonReentrant returns (bool, string memory) {
+    ) external payable returns (bool, string memory) {
         if (bytes(name).length == 0 || bytes(name).length > 64) {
             return (false, "Invalid name: Must be a non-empty string");
         }
