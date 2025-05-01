@@ -4,8 +4,7 @@
         console.log('Running deployWithWeb3 script...')
         
         // const contractName = '1_Storage' // Change this for other contract
-        const constructorArgs = ['0x5B38Da6a701c568545dCfcB03FcB875f56beddC4']    // Put constructor args (if any) here for your contract
-        // As of 4/30 9:30 deployed at: 0xDA0bab807633f07f013f94DD0E6A4F96F8742B53
+        const constructorArgs = ['0x5B38Da6a701c568545dCfcB03FcB875f56beddC4']
 
         // Note that the script needs the ABI which is generated from the compilation artifact.
         // Make sure contract is compiled and artifacts are generated

@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 // Reentrancy guard for protection
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-contract FlightInsurance2 is ReentrancyGuard {
+contract FlightInsurance3 is ReentrancyGuard {
     
     // Struct storing insurance policy details
     struct InsurancePolicy {
