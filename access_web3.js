@@ -1,43 +1,312 @@
-// access_web3.js - Interact with deployed FlightInsurance2 contract
-const fs = require("fs");
-const Web3 = require("web3");
+(async function accessScript() {
+  console.log("Running access_web3.js in Remix...");
 
-// Set this to match your Ganache (or testnet) RPC endpoint
-const web3 = new Web3("http://localhost:8545");  // or your Infura URL
+  if (typeof web3 === 'undefined') {
+    console.error("web3 is not injected. Are you using JavaScript VM or Injected Provider?");
+    return;
+  }
 
-async function main() {
+  // Replace with actual ABI from FlightInsurance2.json
+  const abi = [
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "_insuranceProvider",
+					"type": "address"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "constructor"
+		},
+		{
+			"inputs": [],
+			"name": "INDEMNITY",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "PREMIUM",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "insuranceProvider",
+			"outputs": [
+				{
+					"internalType": "address",
+					"name": "",
+					"type": "address"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "address",
+					"name": "passenger",
+					"type": "address"
+				}
+			],
+			"name": "payIndemnity",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				},
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
+					"internalType": "string",
+					"name": "name",
+					"type": "string"
+				},
+				{
+					"internalType": "string",
+					"name": "flightNo",
+					"type": "string"
+				},
+				{
+					"internalType": "string",
+					"name": "date",
+					"type": "string"
+				},
+				{
+					"internalType": "string",
+					"name": "departure",
+					"type": "string"
+				},
+				{
+					"internalType": "string",
+					"name": "destination",
+					"type": "string"
+				}
+			],
+			"name": "purchasePolicy",
+			"outputs": [
+				{
+					"internalType": "bool",
+					"name": "",
+					"type": "bool"
+				},
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "payable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "viewAllPolicies",
+			"outputs": [
+				{
+					"components": [
+						{
+							"internalType": "string",
+							"name": "passengerName",
+							"type": "string"
+						},
+						{
+							"internalType": "address",
+							"name": "passengerAddress",
+							"type": "address"
+						},
+						{
+							"internalType": "string",
+							"name": "flightNumber",
+							"type": "string"
+						},
+						{
+							"internalType": "string",
+							"name": "flightDate",
+							"type": "string"
+						},
+						{
+							"internalType": "string",
+							"name": "departureCity",
+							"type": "string"
+						},
+						{
+							"internalType": "string",
+							"name": "destinationCity",
+							"type": "string"
+						},
+						{
+							"internalType": "string",
+							"name": "policyStatus",
+							"type": "string"
+						}
+					],
+					"internalType": "struct FlightInsurance2.InsurancePolicy[]",
+					"name": "",
+					"type": "tuple[]"
+				},
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "viewAvailablePolicy",
+			"outputs": [
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "pure",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "viewBalance",
+			"outputs": [
+				{
+					"internalType": "uint256",
+					"name": "",
+					"type": "uint256"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "viewMyPolicy",
+			"outputs": [
+				{
+					"components": [
+						{
+							"internalType": "string",
+							"name": "passengerName",
+							"type": "string"
+						},
+						{
+							"internalType": "address",
+							"name": "passengerAddress",
+							"type": "address"
+						},
+						{
+							"internalType": "string",
+							"name": "flightNumber",
+							"type": "string"
+						},
+						{
+							"internalType": "string",
+							"name": "flightDate",
+							"type": "string"
+						},
+						{
+							"internalType": "string",
+							"name": "departureCity",
+							"type": "string"
+						},
+						{
+							"internalType": "string",
+							"name": "destinationCity",
+							"type": "string"
+						},
+						{
+							"internalType": "string",
+							"name": "policyStatus",
+							"type": "string"
+						}
+					],
+					"internalType": "struct FlightInsurance2.InsurancePolicy",
+					"name": "",
+					"type": "tuple"
+				},
+				{
+					"internalType": "string",
+					"name": "",
+					"type": "string"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		}
+	];
+
+  // Replace with your deployed contract address
+  const contractAddress = "0xDA0bab807633f07f013f94DD0E6A4F96F8742B53"; // <-- Replace
+
   const accounts = await web3.eth.getAccounts();
-  const user = accounts[0];
-
-  // Load ABI and deployed address
-  const artifact = JSON.parse(fs.readFileSync("FlightInsurance2.json", "utf8"));
-  const abi = artifact.abi;
-  const contractAddress = "<YOUR_DEPLOYED_CONTRACT_ADDRESS>"; // replace this!
+  console.log("Accounts:", accounts);
 
   const contract = new web3.eth.Contract(abi, contractAddress);
 
-  // Read and parse weather.txt
-  const weatherLines = fs.readFileSync("weather.txt", "utf8").trim().split("\n").slice(1); // skip header
+  // Provided weather data
+  const weatherData = [
+    ["2023-04-15", "Denver", "Hail"],
+    ["2023-04-15", "Austin", "Normal"],
+    ["2023-04-16", "Houston", "Rainfall"],
+    ["2023-04-16", "Boston", "Rainfall"],
+    ["2023-04-17", "Phoenix", "Flood"],
+    ["2023-04-18", "Tampa", "Hail"],
+    ["2023-04-18", "Miami", "Flood"],
+    ["2023-04-19", "Tucson", "Normal"]
+  ];
 
-  for (const line of weatherLines) {
-    const [dateStr, city, weather] = line.trim().split(/\s+/);
+  const delayWeather = ["Hail", "Flood", "Rainfall"];
 
-    // Convert date to UNIX timestamp (e.g., 2023-04-15 => 1681516800)
-    const timestamp = Math.floor(new Date(dateStr).getTime() / 1000);
+  for (let i = 0; i < weatherData.length; i++) {
+    const [date, city, weather] = weatherData[i];
+    const passenger = accounts[i + 1]; // assume passengers are accounts[1] through accounts[8]
+
+    if (!delayWeather.includes(weather)) {
+      console.log(`${date} | ${city} | ${weather}: No delay. Indemnity not paid.`);
+      continue;
+    }
+
+    console.log(`${date} | ${city} | ${weather}: Attempting indemnity payout for ${passenger}...`);
 
     try {
-      const result = await contract.methods.verify(
-        "FL123", // dummy flight (you can change this to real logic)
-        timestamp,
-        city,
-        weather
-      ).call({ from: user });
+      const result = await contract.methods
+        .payIndemnity(passenger)
+        .send({ from: accounts[0] });
 
-      console.log(`Flight on ${dateStr} in ${city} with weather ${weather}:`, result ? "Payable" : "Not Payable");
+      console.log(`Indemnity paid to ${passenger}. Tx: ${result.transactionHash}`);
     } catch (err) {
-      console.error(`Error on ${dateStr}, ${city}: ${err.message}`);
+      console.log(`Failed to pay indemnity to ${passenger}: ${err.message}`);
     }
   }
-}
 
-main().catch(console.error);
+  console.log("Script complete.");
+})();

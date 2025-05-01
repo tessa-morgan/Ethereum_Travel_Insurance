@@ -1,39 +1,34 @@
-// deploy_web3.js
-const Web3 = require("web3").default;
-const fs = require("fs");
+// Right click on the script name and hit "Run" to execute
+(async () => {
+    try {
+        console.log('Running deployWithWeb3 script...')
+        
+        // const contractName = '1_Storage' // Change this for other contract
+        const constructorArgs = ['0x5B38Da6a701c568545dCfcB03FcB875f56beddC4']    // Put constructor args (if any) here for your contract
+        // As of 4/30 9:30 deployed at: 0xDA0bab807633f07f013f94DD0E6A4F96F8742B53
 
-// Connect to local Ganache instance
-const web3 = new Web3("http://127.0.0.1:7545");  // default Ganache RPC
+        // Note that the script needs the ABI which is generated from the compilation artifact.
+        // Make sure contract is compiled and artifacts are generated
+        const artifactsPath = `artifacts/FlightInsurance2.json` // Change this for different path
 
-async function main() {
-    console.log("Running deployWithWeb3 script...");
-
-    const accounts = await web3.eth.getAccounts();
-    const deployer = accounts[0];
-    console.log("Deploying from account:", deployer);
-
-    // Load ABI and Bytecode
-    const artifact = JSON.parse(fs.readFileSync("artifacts/FlightInsurance2.json", "utf8"));
-    const abi = artifact.abi;
-    const bytecode = artifact.bytecode;
-
-    if (!bytecode || bytecode === "0x") {
-        throw new Error("Bytecode is empty — did you compile the contract?");
+        const metadata = JSON.parse(await remix.call('fileManager', 'getFile', artifactsPath))
+        const accounts = await web3.eth.getAccounts()
+    
+        let contract = new web3.eth.Contract(metadata.abi)
+    
+        contract = contract.deploy({
+            data: metadata.data.bytecode.object,
+            arguments: constructorArgs
+        })
+    
+        const newContractInstance = await contract.send({
+            from: accounts[0],
+            gas: 15000000,
+            gasPrice: '30000000000'
+        })
+        console.log('Contract deployed at address: ', newContractInstance.options.address)
+    } catch (e) {
+        console.log(e.message)
     }
+  })()
 
-    const contract = new web3.eth.Contract(abi);
-
-    const deployedContract = await contract
-        .deploy({ data: bytecode })
-        .send({ from: deployer, gas: 5000000 });
-
-    console.log("Contract deployed to:", deployedContract.options.address);
-
-    // Save the address for later use
-    fs.writeFileSync("deployed_address.txt", deployedContract.options.address);
-    console.log("Saved deployed address to deployed_address.txt");
-}
-
-main().catch(err => {
-    console.error("Deployment failed:", err.message);
-});
