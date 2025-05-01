@@ -1,10 +1,10 @@
-const Web3 = require('web3');
+const Web3 = require('web3').default;
 const fs = require('fs');
 
-const providerURL = 'http://127.0.0.1:7545';
-const insuranceProvider = '0x89b8DEF9aEDeE85A9651a22baad88EE7DfdF25C9'; // Ganache address
-
+const providerURL = 'http://127.0.0.1:7545'; // Ganache local RPC
 const web3 = new Web3(providerURL);
+
+const insuranceProvider = '0x89b8DEF9aEDeE85A9651a22baad88EE7DfdF25C9'; // Ganache address
 
 (async () => {
     try {
