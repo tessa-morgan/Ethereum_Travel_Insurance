@@ -19,7 +19,7 @@ const insuranceProvider = '0x89b8DEF9aEDeE85A9651a22baad88EE7DfdF25C9'; // Ganac
 
         const deployed = await contract.deploy({
             data: metadata.data.bytecode.object,
-            arguments: []
+            arguments: [insuranceProvider]
         }).send({
             from: accounts[0],
             gas: 2000000,

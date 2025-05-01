@@ -30,12 +30,8 @@ contract FlightInsurance2 is ReentrancyGuard {
     address[] private insuredPassengerList;
 
     // Set the insurance provider at contract deployment
-    // constructor(address _insuranceProvider) {
-    //     insuranceProvider = _insuranceProvider;
-    // }
-
-    constructor() {
-        insuranceProvider = 0x89b8DEF9aEDeE85A9651a22baad88EE7DfdF25C9;
+    constructor(address _insuranceProvider) {
+        insuranceProvider = _insuranceProvider;
     }
 
     // Returns static policy details to passenger
@@ -129,5 +125,16 @@ contract FlightInsurance2 is ReentrancyGuard {
         return msg.sender.balance;
     }
 
+    function markFlightDelayed(address passenger) external {
+        require(msg.sender == insuranceProvider, "Only the provider can mark flights delayed");
+        require(policiesByAddress[passenger].passengerAddress != address(0), "Policy not found");
+        require(keccak256(bytes(policiesByAddress[passenger].policyStatus)) == keccak256(bytes("purchased")), "Already claimed");
+
+        // Update policy status
+        policiesByAddress[passenger].policyStatus = "claimed";
+
+        // Pay indemnity
+        payable(passenger).transfer(INDEMNITY);
+    }
 
 }
