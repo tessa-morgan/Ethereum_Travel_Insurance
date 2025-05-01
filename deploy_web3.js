@@ -4,7 +4,7 @@
         console.log('Running deployWithWeb3 script...')
         
         // const contractName = '1_Storage' // Change this for other contract
-        const constructorArgs = []    // Put constructor args (if any) here for your contract
+        const constructorArgs = ['0x5B38Da6a701c568545dCfcB03FcB875f56beddC4']    // Put constructor args (if any) here for your contract
     
         // Note that the script needs the ABI which is generated from the compilation artifact.
         // Make sure contract is compiled and artifacts are generated
@@ -22,7 +22,7 @@
     
         const newContractInstance = await contract.send({
             from: accounts[0],
-            gas: 1500000,
+            gas: 15000000,
             gasPrice: '30000000000'
         })
         console.log('Contract deployed at address: ', newContractInstance.options.address)

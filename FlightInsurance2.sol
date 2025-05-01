@@ -108,33 +108,29 @@ contract FlightInsurance2 is ReentrancyGuard {
         return (allPolicies, "All policies retrieved successfully");
     }
 
-    // Pay indemnity to a passenger if their flight was verified as affected
-    // Flow for Phase II: load weather.txt --> Provider views all plans --> 
-    function payIndemnity(address passenger) external {
-        require(msg.sender == insuranceProvider, "Only insurance provider can initiate payment");
-        InsurancePolicy storage policy = policiesByAddress[passenger];
-        require(policy.passengerAddress != address(0), "No policy found");
-        require(keccak256(bytes(policy.policyStatus)) == keccak256("purchased"), "Indemnity already claimed");
-
-        payable(passenger).transfer(INDEMNITY);
-        policy.policyStatus = "claimed";
-    }
-
     // Allow any caller to check their current balance
     function viewBalance() external view returns (uint256) {
         return msg.sender.balance;
     }
 
-    function markFlightDelayed(address passenger) external {
-        require(msg.sender == insuranceProvider, "Only the provider can mark flights delayed");
-        require(policiesByAddress[passenger].passengerAddress != address(0), "Policy not found");
-        require(keccak256(bytes(policiesByAddress[passenger].policyStatus)) == keccak256(bytes("purchased")), "Already claimed");
+    // Pay indemnity to a passenger if their flight was verified as affected
+    function payIndemnity(address passenger) external returns (bool, string memory) {
+        if (msg.sender != insuranceProvider) {
+            return (false, "Only insurance provider can initiate payment");
+        }
 
-        // Update policy status
-        policiesByAddress[passenger].policyStatus = "claimed";
+        InsurancePolicy storage policy = policiesByAddress[passenger];
+        if (policy.passengerAddress == address(0)) {
+            return (false, "No policy found");
+        }
 
-        // Pay indemnity
+        if (keccak256(bytes(policy.policyStatus)) != keccak256("purchased")) {
+            return (false, "Indemnity already claimed");
+        }
+
         payable(passenger).transfer(INDEMNITY);
+        policy.policyStatus = "claimed";
+        return (true, "Indemnity successfully paid");
     }
 
 }

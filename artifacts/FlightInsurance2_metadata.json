@@ -63,21 +63,19 @@
 						"type": "address"
 					}
 				],
-				"name": "markFlightDelayed",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
+				"name": "payIndemnity",
+				"outputs": [
 					{
-						"internalType": "address",
-						"name": "passenger",
-						"type": "address"
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
 					}
 				],
-				"name": "payIndemnity",
-				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -298,11 +296,11 @@
 			]
 		},
 		"FlightInsurance2.sol": {
-			"keccak256": "0xff59128252680d1ef737c561b93976698da48b38fd1f3dce0dc9612258a4511c",
+			"keccak256": "0x1fd124f7617eb2bdb11990edeef66eaf2810e96244cdc158925f19e6438da575",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c1bdc781d1bf6a25db13b27a556a1ea90a741070a4a582a9c53fdb33a538bf4c",
-				"dweb:/ipfs/Qme8ibE2x5jUmSQ3eA8NKQ5d7MNhX4yQ6yP95iFGtjEprP"
+				"bzz-raw://63c32bc226f66d95cdca89a96be28c2dedb6118baa534fe57a51955aadd9c8f1",
+				"dweb:/ipfs/QmQ1PhwWo1CEaQ12ZbCYYsCxuH6S3ScqtTM6mtFVQZYKDf"
 			]
 		}
 	},
