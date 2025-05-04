@@ -64,7 +64,18 @@
 					}
 				],
 				"name": "payIndemnity",
-				"outputs": [],
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					},
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			},
@@ -262,7 +273,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"FlightInsurance2.sol": "FlightInsurance1"
+			"FlightInsurance1.sol": "FlightInsurance1"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -284,12 +295,12 @@
 				"dweb:/ipfs/QmcYR3bd862GD1Bc7jwrU9bGxrhUu5na1oP964bDCu2id1"
 			]
 		},
-		"FlightInsurance2.sol": {
-			"keccak256": "0x188c534d167289f88982ee60f487adec619dba02a44c7643b7034f5197af89f0",
+		"FlightInsurance1.sol": {
+			"keccak256": "0xc3c3e5b86a7d038f08fe62c91e475d09d55f066109a1bb8cc87207c4222c4d23",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3e96a8d44bf27b4301e1746cc7c9a5937dc615e4290270f76f536edb8fdc9a89",
-				"dweb:/ipfs/QmTD37mq3GX9XEfZCBxJguJiHFfamKmCM6icTc6aBLPyVn"
+				"bzz-raw://14cbf48313d746340f4583c40e83ab2056db4dce3f41e8ea4fcafb73b3266964",
+				"dweb:/ipfs/QmT4fPutBSKJjLom9LAYxzd9KVkgjVgkqMiS26g6BNr9np"
 			]
 		}
 	},

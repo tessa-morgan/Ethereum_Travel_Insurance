@@ -282,8 +282,30 @@
         ["2023-04-19", "Tucson", "Normal"]
     ];
 
+    // === [0] Init and Check Balances ===
+        const passengers = [
+            { idx: 1, name: "Alice", flight: "AA100", date: "2023-04-15", from: "Denver", to: "Dallas" },
+            { idx: 2, name: "Bob", flight: "DL200", date: "2023-04-16", from: "Houston", to: "Chicago" },
+            { idx: 3, name: "Carol", flight: "UA300", date: "2023-04-17", from: "Tampa", to: "Seattle" },
+        ];
+
+        for (const p of passengers) {
+            try {
+                const result = await contract.methods.viewBalance.call();
+                console.log(`\n[0] viewBalance() of ${p.name} (${accounts[p.idx]}):`);
+                console.log(`Returned: ${result[0]}`);
+            } catch (err) {
+                console.log(`\n[0] viewBalance() of ${p.name} (${accounts[p.idx]}):`);
+                console.log(`Returned Error: ${err.message}`);
+            }
+        }
+
+        const balanceWei = await contract.methods.viewBalance().call({ from: account });
+        const balanceEther = web3.utils.fromWei(balanceWei, "ether");
+        console.log(`Balance for ${account}: ${balanceEther} ETH`);
+
     // START USER TESTS BEFORE WEATHER CHECKS
-    if (false) {
+    if (true) {
         // === [1] Test: View Available Policy ===
         try {
             const availablePolicy = await contract.methods.viewAvailablePolicy().call();
@@ -295,12 +317,6 @@
         }
 
         // === [2] Test: Purchase Policies ===
-        const passengers = [
-            { idx: 1, name: "Alice", flight: "AA100", date: "2023-04-15", from: "Denver", to: "Dallas" },
-            { idx: 2, name: "Bob", flight: "DL200", date: "2023-04-16", from: "Houston", to: "Chicago" },
-            { idx: 3, name: "Carol", flight: "UA300", date: "2023-04-17", from: "Tampa", to: "Seattle" },
-        ];
-
         for (const p of passengers) {
             try {
                 const result = await contract.methods.purchasePolicy(p.name, p.flight, p.date, p.from, p.to).call({

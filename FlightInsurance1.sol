@@ -39,7 +39,8 @@ contract FlightInsurance1 is ReentrancyGuard {
         return "Premium: 0.01 ETH, Indemnity: 0.02 ETH, Coverage: Extreme Weather Delays (e.g., hail, flooding, etc.).";
     }
 
-    // Allows a passenger to purchase a policy and transfers premium
+    // Allows a passenger to purchase a policy then transfers premium if valid
+    // If same customer calls multiple times, only first considered valid
     function purchasePolicy(
         string calldata name,
         string calldata flightNo,
@@ -47,17 +48,34 @@ contract FlightInsurance1 is ReentrancyGuard {
         string calldata departure,
         string calldata destination
     ) external payable nonReentrant returns (bool, string memory) {
-        if (msg.sender == insuranceProvider) {
-            return (false, "Invalid Caller: Insurance Provider");
+        if (bytes(name).length == 0 || bytes(name).length > 64) {
+            return (false, "Invalid name: Must be a non-empty string");
         }
-        if (policiesByAddress[msg.sender].passengerAddress != address(0)) {
-            return (false, "Policy already exists for this address");
+
+        if (bytes(flightNo).length < 2 || bytes(flightNo).length > 6) {
+            return (false, "Invalid flight number: Must be 2 to 6 characters");
         }
+
+        // if (bytes(departure).length != 3 || bytes(destination).length != 3) {
+        //     return (false, "Invalid city code: Must be 3 characters (e.g., JFK)");
+        // }
+
         if (keccak256(bytes(departure)) == keccak256(bytes(destination))) {
             return (false, "Departure and destination cities cannot be the same");
         }
+
+        if (bytes(date).length != 10 || 
+            bytes(date)[4] != "-" || 
+            bytes(date)[7] != "-") {
+            return (false, "Invalid date format: Must be YYYY-MM-DD");
+        }
+
         if (msg.value < PREMIUM) {
             return (false, "Insufficient funds: Minimum 0.01 ETH required");
+        }
+
+        if (policiesByAddress[msg.sender].passengerAddress != address(0)) {
+            return (false, "Policy already exists for this address");
         }
 
         // Create and store the policy
@@ -77,19 +95,24 @@ contract FlightInsurance1 is ReentrancyGuard {
         // Transfer premium to the provider
         payable(insuranceProvider).transfer(PREMIUM);
 
+        if (msg.sender == insuranceProvider) {
+            return (true, "Insurance Provider: Policy successfully purchased");
+        }
+
         return (true, "Policy successfully purchased");
     }
 
     // Allows a passenger to view their policy
     function viewMyPolicy() external view returns (InsurancePolicy memory, string memory) {
         InsurancePolicy memory policy = policiesByAddress[msg.sender];
-        if (msg.sender == insuranceProvider) {
-            return (policy, "Invalid Caller: Insurance Provider");
-        }
-
         if (policy.passengerAddress == address(0)) {
             return (policy, "No policy found");
         }
+
+        if (msg.sender == insuranceProvider) {
+            return (policy, "Insurance Provider: Policy retrieved successfully");
+        }
+
         return (policy, "Policy retrieved successfully");
     }
 
@@ -107,4 +130,34 @@ contract FlightInsurance1 is ReentrancyGuard {
         }
         return (allPolicies, "All policies retrieved successfully");
     }
+
+    // Allow any caller to check their current balance
+    function viewBalance() external view returns (uint256) {
+        return msg.sender.balance;
+    }
+
+    // Pay indemnity to a passenger if their flight was verified as affected
+    function payIndemnity(address passenger) external returns (bool, string memory) {
+        if (msg.sender != insuranceProvider) {
+            return (false, "Only insurance provider can initiate payment");
+        }
+
+        if (passenger == address(0)) {
+            return (false, "Invalid address: zero address provided");
+        }
+
+        InsurancePolicy storage policy = policiesByAddress[passenger];
+        if (policy.passengerAddress == address(0)) {
+            return (false, "No policy found");
+        }
+
+        if (keccak256(bytes(policy.policyStatus)) != keccak256("purchased")) {
+            return (false, "Indemnity already claimed");
+        }
+
+        payable(passenger).transfer(INDEMNITY);
+        policy.policyStatus = "claimed";
+        return (true, "Indemnity successfully paid");
+    }
+
 }

@@ -1,10 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-// Reentrancy guard for protection
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
-contract FlightInsurance2 is ReentrancyGuard {
+contract FlightInsurance3 {
     
     // Struct storing insurance policy details
     struct InsurancePolicy {
@@ -47,13 +45,13 @@ contract FlightInsurance2 is ReentrancyGuard {
         string calldata date,
         string calldata departure,
         string calldata destination
-    ) external payable nonReentrant returns (bool, string memory) {
+    ) external payable returns (string memory) {
         if (bytes(name).length == 0 || bytes(name).length > 64) {
-            return (false, "Invalid name: Must be a non-empty string");
+            revert("Invalid name: Must be a non-empty string");
         }
 
         if (bytes(flightNo).length < 2 || bytes(flightNo).length > 6) {
-            return (false, "Invalid flight number: Must be 2 to 6 characters");
+            revert("Invalid flight number: Must be 2 to 6 characters");
         }
 
         // if (bytes(departure).length != 3 || bytes(destination).length != 3) {
@@ -61,21 +59,21 @@ contract FlightInsurance2 is ReentrancyGuard {
         // }
 
         if (keccak256(bytes(departure)) == keccak256(bytes(destination))) {
-            return (false, "Departure and destination cities cannot be the same");
+            revert("Departure and destination cities cannot be the same");
         }
 
         if (bytes(date).length != 10 || 
             bytes(date)[4] != "-" || 
             bytes(date)[7] != "-") {
-            return (false, "Invalid date format: Must be YYYY-MM-DD");
+            revert("Invalid date format: Must be YYYY-MM-DD");
         }
 
         if (msg.value < PREMIUM) {
-            return (false, "Insufficient funds: Minimum 0.01 ETH required");
+            revert("Insufficient funds: Minimum 0.01 ETH required");
         }
 
         if (policiesByAddress[msg.sender].passengerAddress != address(0)) {
-            return (false, "Policy already exists for this address");
+            revert("Policy already exists for this address");
         }
 
         // Create and store the policy
@@ -96,10 +94,10 @@ contract FlightInsurance2 is ReentrancyGuard {
         payable(insuranceProvider).transfer(PREMIUM);
 
         if (msg.sender == insuranceProvider) {
-            return (true, "Insurance Provider: Policy successfully purchased");
+            return ("Insurance Provider: Policy successfully purchased");
         }
 
-        return (true, "Policy successfully purchased");
+        return ("Policy successfully purchased");
     }
 
     // Allows a passenger to view their policy
@@ -137,13 +135,17 @@ contract FlightInsurance2 is ReentrancyGuard {
     }
 
     // Pay indemnity to a passenger if their flight was verified as affected
-    function payIndemnity(address passenger) external returns (bool, string memory) {
+    function payIndemnity(address passenger) external payable returns (bool, string memory) {
         if (msg.sender != insuranceProvider) {
             return (false, "Only insurance provider can initiate payment");
         }
 
         if (passenger == address(0)) {
-            return (false, "Invalid address: zero address provided");
+            return (false, "Invalid address");
+        }
+
+        if (msg.value < INDEMNITY) {
+            return (false, "Insufficient funds provider: Minimum 0.02 ETH required");
         }
 
         InsurancePolicy storage policy = policiesByAddress[passenger];

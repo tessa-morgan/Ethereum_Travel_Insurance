@@ -76,7 +76,7 @@
 						"type": "string"
 					}
 				],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -109,11 +109,6 @@
 				],
 				"name": "purchasePolicy",
 				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					},
 					{
 						"internalType": "string",
 						"name": "",
@@ -165,7 +160,7 @@
 								"type": "string"
 							}
 						],
-						"internalType": "struct FlightInsurance2.InsurancePolicy[]",
+						"internalType": "struct FlightInsurance3.InsurancePolicy[]",
 						"name": "",
 						"type": "tuple[]"
 					},
@@ -246,7 +241,7 @@
 								"type": "string"
 							}
 						],
-						"internalType": "struct FlightInsurance2.InsurancePolicy",
+						"internalType": "struct FlightInsurance3.InsurancePolicy",
 						"name": "",
 						"type": "tuple"
 					},
@@ -273,7 +268,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"FlightInsurance2.sol": "FlightInsurance2"
+			"PhaseIII/FlightInsurance3.sol": "FlightInsurance3"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -287,20 +282,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"@openzeppelin/contracts/security/ReentrancyGuard.sol": {
-			"keccak256": "0xa535a5df777d44e945dd24aa43a11e44b024140fc340ad0dfe42acf4002aade1",
+		"PhaseIII/FlightInsurance3.sol": {
+			"keccak256": "0xb6c6c6906300c7dc700eba49b0de3dc5bb0d5522167c77850e6b023de3958db3",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://41319e7f621f2dc3733511332c4fd032f8e32ad2aa7fd6f665c19741d9941a34",
-				"dweb:/ipfs/QmcYR3bd862GD1Bc7jwrU9bGxrhUu5na1oP964bDCu2id1"
-			]
-		},
-		"FlightInsurance2.sol": {
-			"keccak256": "0xb0c946a66bbef3f1c4c702707b4dc9fc0c760b096a37b492c510832ea1c376d2",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://78691fd7a6be8d31bb0abd4b3729bae4d6c97ddb105e08cb94be3230cde1c06b",
-				"dweb:/ipfs/QmRaieCvE1UXqBZRkQJxL6vjK9TV4tG2S2g4dxBR7WnuK2"
+				"bzz-raw://0f6821d486556729f98cea97fe1ac44650067e64d73537ba2ed1125624a94fef",
+				"dweb:/ipfs/QmYzfsnjk3TUeZvzVA49WELRGzxDJVbRve9W8xoABEW9jV"
 			]
 		}
 	},
